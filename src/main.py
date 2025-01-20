@@ -18,7 +18,7 @@ def list_tools() -> dict:
 
 @st.cache_data(show_spinner="Loading Resources...🔧")
 def list_resources() -> dict:
-    """List all available resources.
+    """List all available resources
 
     Calls all list resources method for all configured MCP servers.
     """
