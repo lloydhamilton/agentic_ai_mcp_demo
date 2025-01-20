@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "github": {
+      "command": "python",
+      "args": ["src/mcp_services/github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "ENV_GITHUB_PERSONAL_ACCESS_TOKEN"
+      }
+    },
+    "git": {
+      "command": "uvx",
+      "args": ["mcp-server-git", "--repository", "./"]
+    }
+  }
+}
