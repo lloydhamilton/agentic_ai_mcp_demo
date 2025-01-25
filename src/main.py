@@ -1,12 +1,11 @@
+import argparse
 import asyncio
 
-import streamlit as st
-from langchain_mcp.get_servers import LangChainMcp
+from langchain_mcp_connect.get_servers import LangChainMcp
 
-from app.agent import AgenticInterface
+from app.streaming_agent import MCPDemo
 
 
-@st.cache_data(show_spinner="Loading AI Tools...🔧")
 def list_tools() -> dict:
     """List all available tools.
 
@@ -16,9 +15,8 @@ def list_tools() -> dict:
     return asyncio.run(mcp.fetch_all_server_tools())
 
 
-@st.cache_data(show_spinner="Loading Resources...🔧")
 def list_resources() -> dict:
-    """List all available resources
+    """List all available resources.
 
     Calls all list resources method for all configured MCP servers.
     """
@@ -27,5 +25,12 @@ def list_resources() -> dict:
 
 
 if __name__ == "__main__":
-    inner_claude = AgenticInterface(session_state=st.session_state)
-    inner_claude.start(list_tools(), list_resources())
+    # Parse arguments
+    parser = argparse.ArgumentParser(
+        description="Langchain Model Context Protocol demo"
+    )
+    parser.add_argument("-q", "--query", type=str, help="Query to be executed")
+    args = parser.parse_args()
+
+    agent = MCPDemo()
+    agent.start(list_tools(), list_resources(), args.query)

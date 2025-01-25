@@ -63,9 +63,6 @@ def list_repo_tree(args: GetTreeArgs) -> str:
     resp = requests.get(url, headers=headers)
     resp.raise_for_status()
 
-    # logger.info(resp.json())
-    logger.info(GitHubTreeResponse.model_validate(resp.json()))
-
     content = GitHubTreeResponse.model_validate(resp.json())
 
     return json.dumps(content.model_dump(mode="json"))

@@ -5,22 +5,16 @@ description = ""
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-    "anthropic>=0.35.0",
-    "boto3>=1.35.49",
     "langchain>=0.3.9",
     "langchain-chroma>=0.1.4",
     "langgraph>=0.2.53",
     "mcp>=1.0.0",
-    "notebook>=7.2.2",
     "pydantic>=2.9.2",
     "python-dotenv>=1.0.1",
     "requests>=2.32.3",
-    "streamlit>=1.39.0",
     "langchain-openai>=0.2.10",
     "langchain-community>=0.3.9",
-    "langchain-anthropic>=0.2.4",
-    "pyvis>=0.3.2",
-    "langchain-mcp",
+    "langchain-mcp-connect==1.0.0",
 ]
 
 [tool.uv]
@@ -30,7 +24,7 @@ dev-dependencies = [
 ]
 
 [tool.uv.sources]
-langchain-mcp = { path = "../langchain_mcp", editable = true }
+#langchain-mcp-connect = { path = "../langchain_mcp_connect", editable = true }
 
 
 [tool.ruff.lint]
