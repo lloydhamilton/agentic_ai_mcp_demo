@@ -1,10 +1,20 @@
 import argparse
 import asyncio
+import logging
 from functools import lru_cache
 
 from langchain_mcp_connect.get_servers import LangChainMcp
 
 from app.streaming_agent import MCPDemo
+
+for logger_name in [
+    "mcp_services.get_servers",
+    "github-server",
+    # "mcp.server.lowlevel.server",
+    "langchain_mcp_connect",
+    "mcp_services",
+]:
+    logging.getLogger(logger_name).setLevel(logging.ERROR)
 
 
 @lru_cache
@@ -36,10 +46,12 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
 
+    tools = list_tools()
+    resources = list_resources()
     agent = MCPDemo()
 
     if args.query:
-        agent.start(list_tools(), list_resources(), args.query)
+        agent.start(tools, resources, args.query)
     else:
         print("Welcome to MCP Demo! Type 'exit' or 'quit' to end the session.")
         print("Enter your query:")

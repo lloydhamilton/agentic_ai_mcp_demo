@@ -33,10 +33,8 @@ class MCPDemo:
         if self._llm is None:
             self._llm = ChatOpenAI(
                 model="gpt-4o",
-                model_kwargs={
-                    "max_tokens": 4096,
-                    "temperature": 0.0,
-                },
+                temperature=0.0,
+                max_tokens=4096,
             )
         return self._llm
 
