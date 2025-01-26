@@ -11,6 +11,7 @@ name = "agentic-ai-mcp-demo"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
+    { name = "jsonschema-pydantic" },
     { name = "langchain" },
     { name = "langchain-chroma" },
     { name = "langchain-community" },
@@ -31,10 +32,11 @@ dev = [
 
 [package.metadata]
 requires-dist = [
+    { name = "jsonschema-pydantic", specifier = ">=0.6" },
     { name = "langchain", specifier = ">=0.3.9" },
     { name = "langchain-chroma", specifier = ">=0.1.4" },
     { name = "langchain-community", specifier = ">=0.3.9" },
-    { name = "langchain-mcp-connect", specifier = "==1.0.0" },
+    { name = "langchain-mcp-connect", specifier = ">=2.0.1" },
     { name = "langchain-openai", specifier = ">=0.2.10" },
     { name = "langgraph", specifier = ">=0.2.53" },
     { name = "mcp", specifier = ">=1.0.0" },
@@ -871,6 +873,18 @@ wheels = [
 ]
 
 [[package]]
+name = "jsonschema-pydantic"
+version = "0.6"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "pydantic" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/d4/3e/088097e87f6b24b162cd42b090b1d3891b68e9dac96ceeac8ed5dff94db7/jsonschema_pydantic-0.6.tar.gz", hash = "sha256:6069a8929a333a7c7ea8510e9de50f062e747e655e6ba106da5af1981f995270", size = 6227 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/e7/67/cbb63be985519b51d13499e726db2c960069588d5c2c479859856158b4de/jsonschema_pydantic-0.6-py3-none-any.whl", hash = "sha256:98385ed53ab87598665956b43756746350e2b60411a38381231f9703d36e40eb", size = 4154 },
+]
+
+[[package]]
 name = "kubernetes"
 version = "31.0.0"
 source = { registry = "https://pypi.org/simple" }
@@ -971,15 +985,16 @@ wheels = [
 
 [[package]]
 name = "langchain-mcp-connect"
-version = "1.0.0"
+version = "2.0.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
+    { name = "jsonschema-pydantic" },
     { name = "langchain-core" },
     { name = "mcp" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/e7/41/a510cf8a3e2dfb4de3e89165443b3a91a10e56c1132da11d0a9f0e3f87c2/langchain_mcp_connect-1.0.0.tar.gz", hash = "sha256:c89484a05ece5e0c89e359f1bcc0051e3ffd7a4b1c67e40338d537556295a9d9", size = 29276 }
+sdist = { url = "https://files.pythonhosted.org/packages/17/d9/e38b71985b4b8320638b0a6427cb0ae2fdbe31e530431cdd3bbcb2e7b5d0/langchain_mcp_connect-2.0.1.tar.gz", hash = "sha256:cb25d609588ec7497a649c785ab0020cdba399827e7e73bf9f0c3b7b8c0b82a4", size = 31113 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/02/78/3f4d6b99ca188522d01aa29a83cfe978fa5d5e1b1b677e55fb79f8989bfc/langchain_mcp_connect-1.0.0-py3-none-any.whl", hash = "sha256:09dd83451176ac85f76e1a07f9c426a278cf44fbcd6b316262e64118c86497b6", size = 8445 },
+    { url = "https://files.pythonhosted.org/packages/f9/d9/9ea12895556024b469bc1e1889845c4d18568a74c672ec3dd9317df1d058/langchain_mcp_connect-2.0.1-py3-none-any.whl", hash = "sha256:ed41656d23a8ccec49a032befe1c31ab641292c810d3b84d2b120f392b6213ac", size = 6017 },
 ]
 
 [[package]]

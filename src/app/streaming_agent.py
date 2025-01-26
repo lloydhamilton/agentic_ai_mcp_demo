@@ -4,8 +4,8 @@ from collections.abc import AsyncIterator
 
 from dotenv import load_dotenv
 from langchain_core.messages import AIMessage, HumanMessage
-from langchain_mcp_connect import MspToolPrompt, call_tool
-from langchain_mcp_connect.get_servers import LangChainMcp
+from langchain_core.tools import BaseTool
+from langchain_mcp_connect import LangChainMcp
 from langchain_openai import ChatOpenAI
 from langgraph.prebuilt import create_react_agent
 
@@ -56,37 +56,24 @@ class MCPDemo:
                     print(content, end="", flush=True)
             self.conversation.append(AIMessage(content=output))
 
-    async def agent(self) -> None:
-        """Create the React agent with tools."""
-        # Initialise the agent executor with the call tools
-        agent_executor = create_react_agent(self.llm, [call_tool])
+    async def agent(self, tools: list[BaseTool]) -> None:
+        """Create the React agent with tools.
+
+        Args:
+            tools (list[BaseTool]): The tools to be attached to langchain agent.
+        """
+        agent_executor = create_react_agent(self.llm, tools)
         stream = agent_executor.astream_events(
             dict(messages=self.conversation), version="v2"
         )
         await self.process_open_ai_stream(stream)
 
-    def create_system_prompt(self, tools: dict, resources: dict) -> None:
-        """Add a system prompt if the conversation is not initialised.
+    def start(self, tools: list[BaseTool], query: str) -> None:
+        """Initialise the agent with the MCP server tools.
 
         Args:
-            tools (dict): The tools to be used in the system prompt.
-            resources (dict): The resources to be used in the system prompt.
-
-        Returns:
-            dict: The system prompt.
-        """
-        if not self.conversation:
-            system_prompt = MspToolPrompt(tools=tools, resources=resources).get_prompt()
-            self.conversation.append(system_prompt)
-
-    def start(self, tools: dict, resources: dict, query: str) -> None:
-        """Start the agent with the tools and resources.
-
-        Args:
-            tools (dict): The tools to be used in the system prompt.
-            resources (dict): The resources to be used in the system prompt.
+            tools (list[BaseTool]): The tools to be attached to langchain agent.
             query (str): The query to start the agent with.
         """
-        self.create_system_prompt(tools, resources)
         self.conversation.append(HumanMessage(content=query))
-        asyncio.run(self.agent())
+        asyncio.run(self.agent(tools))
