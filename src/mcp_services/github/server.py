@@ -7,7 +7,7 @@ from enum import Enum
 import requests
 from dotenv import load_dotenv
 from mcp.server import Server
-from mcp.types import AnyUrl, Resource, TextContent, Tool
+from mcp.types import TextContent, Tool
 from schemas import GetFileContentsArgs, GetTreeArgs, GitHubContent, GitHubTreeResponse
 
 # Configure logging
@@ -16,7 +16,7 @@ logger = logging.getLogger("github-server")
 logger.info("GitHub server started.")
 
 load_dotenv()
-app = Server("github")
+app = Server("github_custom")
 
 
 class GitHubTools(str, Enum):
@@ -66,30 +66,6 @@ def list_repo_tree(args: GetTreeArgs) -> str:
     content = GitHubTreeResponse.model_validate(resp.json())
 
     return json.dumps(content.model_dump(mode="json"))
-
-
-@app.list_resources()
-async def list_resources() -> list[Resource]:
-    """List available resources."""
-    return [
-        Resource(
-            uri="github://repository/name",
-            name="repository_name",
-            description="Returns the name of the repository.",
-            mimetypes="text/plain",
-        )
-    ]
-
-
-@app.read_resource()
-async def table_names(uri: AnyUrl) -> str:
-    """Handle the read_resource for the postgres service."""
-    match str(uri):
-        case "github://repository/name":
-            return "langchain_mcp"
-        case _:
-            logger.error(f"Unknown resource: {uri}")
-            raise ValueError(f"Unknown resource: {uri}")
 
 
 @app.list_tools()

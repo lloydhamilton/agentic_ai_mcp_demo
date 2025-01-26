@@ -36,7 +36,7 @@ requires-dist = [
     { name = "langchain", specifier = ">=0.3.9" },
     { name = "langchain-chroma", specifier = ">=0.1.4" },
     { name = "langchain-community", specifier = ">=0.3.9" },
-    { name = "langchain-mcp-connect", specifier = ">=2.0.1" },
+    { name = "langchain-mcp-connect", editable = "../langchain_mcp_connect" },
     { name = "langchain-openai", specifier = ">=0.2.10" },
     { name = "langgraph", specifier = ">=0.2.53" },
     { name = "mcp", specifier = ">=1.0.0" },
@@ -986,15 +986,24 @@ wheels = [
 [[package]]
 name = "langchain-mcp-connect"
 version = "2.0.1"
-source = { registry = "https://pypi.org/simple" }
+source = { editable = "../langchain_mcp_connect" }
 dependencies = [
     { name = "jsonschema-pydantic" },
     { name = "langchain-core" },
     { name = "mcp" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/17/d9/e38b71985b4b8320638b0a6427cb0ae2fdbe31e530431cdd3bbcb2e7b5d0/langchain_mcp_connect-2.0.1.tar.gz", hash = "sha256:cb25d609588ec7497a649c785ab0020cdba399827e7e73bf9f0c3b7b8c0b82a4", size = 31113 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/f9/d9/9ea12895556024b469bc1e1889845c4d18568a74c672ec3dd9317df1d058/langchain_mcp_connect-2.0.1-py3-none-any.whl", hash = "sha256:ed41656d23a8ccec49a032befe1c31ab641292c810d3b84d2b120f392b6213ac", size = 6017 },
+
+[package.metadata]
+requires-dist = [
+    { name = "jsonschema-pydantic", specifier = "==0.6" },
+    { name = "langchain-core", specifier = ">=0.3.30" },
+    { name = "mcp", specifier = ">=1.2.0" },
+]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "pytest", specifier = ">=8.3.4" },
+    { name = "pytest-asyncio", specifier = ">=0.25.2" },
 ]
 
 [[package]]
