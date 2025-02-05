@@ -4,7 +4,7 @@
 #   "langgraph>=0.2.53",
 #   "langchain-openai>=0.2.10",
 #   "langchain-community>=0.3.9",
-#   "langchain-mcp-connect>=2.0.0",
+#   "langchain-mcp-connect>=2.0.2",
 # ]
 # ///
 

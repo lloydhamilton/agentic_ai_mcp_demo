@@ -985,7 +985,7 @@ wheels = [
 
 [[package]]
 name = "langchain-mcp-connect"
-version = "2.0.1"
+version = "2.0.5"
 source = { editable = "../langchain_mcp_connect" }
 dependencies = [
     { name = "jsonschema-pydantic" },

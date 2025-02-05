@@ -28,7 +28,7 @@ async def run() -> None:
                 arguments={
                     "owner": "modelcontextprotocol",
                     "repo": "python-sdk",
-                    "path": "README.md",
+                    "path": "LICENSE",
                 },
             )
             print(call_result)
