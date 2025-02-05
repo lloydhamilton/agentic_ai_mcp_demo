@@ -3,7 +3,11 @@
 </h1>
 
 ## Introduction
-This project demonstrates how to use the `langchain-mcp_-connect` package to connect to Model Context Protocol (MCP) servers and access tools that can be made available to LangChain. 
+This project demonstrates:
+
+1. How to integrate Anthropic Model Context Protocol (MCP) with LangChain.
+2. How to use the `langchain-mcp_-connect` package to connect to Model Context Protocol (MCP) servers and access tools that can be made available to LangChain. 
+
 The `langchain_mcp_connect` package allows developers to easily integrate their LLMs with a rich ecosystem of [pre-built](https://github.com/modelcontextprotocol/servers/tree/main) MCP servers.
 
 ### Pre-requisites
